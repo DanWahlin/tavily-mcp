@@ -3,8 +3,9 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/tavily-ai/tavily-mcp?style=social)
 ![npm](https://img.shields.io/npm/dt/tavily-mcp)
 ![smithery badge](https://smithery.ai/badge/@tavily-ai/tavily-mcp)
+[![Install with NPM in VS Code](https://img.shields.io/badge/VS_Code-NPM-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect?url=vscode:mcp/install?%7B%22name%22%3A%22tavily-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22tavily-mcp%400.1.4%22%5D%2C%22env%22%3A%7B%22TAVILY_API_KEY%22%3A%22%24%7Binput%3Atavily_api_key%7D%22%7D%2C%22inputs%22%3A%5B%7B%22id%22%3A%22tavily_api_key%22%2C%22description%22%3A%22Tavily%20API%20Key%22%2C%22password%22%3Atrue%7D%5D%7D) [![Install with NPM in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-NPM-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect?url=vscode-insiders:mcp/install?%7B%22name%22%3A%22tavily-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22tavily-mcp%400.1.4%22%5D%2C%22env%22%3A%7B%22TAVILY_API_KEY%22%3A%22%24%7Binput%3Atavily_api_key%7D%22%7D%2C%22inputs%22%3A%5B%7B%22id%22%3A%22tavily_api_key%22%2C%22description%22%3A%22Tavily%20API%20Key%22%2C%22password%22%3Atrue%7D%5D%7D)
 
-> 🔌 **Compatible with [Cline](https://github.com/cline/cline), [Cursor](https://cursor.sh), [Claude Desktop](https://claude.ai/desktop), and any other MCP Clients!**
+> 🔌 **Compatible with [Cline](https://github.com/cline/cline), [Cursor](https://cursor.sh), [Claude Desktop](https://claude.ai/desktop), [VS Code](https://code.visualstudio.com) and any other MCP Clients!**
 >
 > Tavily MCP is also compatible with any MCP client
 >
@@ -65,6 +66,55 @@ Although you can launch a server on its own, it's not particularly helpful in is
 
 This repository will explain how to configure both [Cursor](https://cursor.sh) and [Claude Desktop](https://claude.ai/desktop) to work with the tavily-mcp server.
 
+
+### Configuring VS Code 🧩
+
+You can quickly install the Tavily MCP server in VS Code using the one-click install buttons at the top of this README.
+
+Alternatively, you can manually configure VS Code to use the Tavily MCP server:
+
+1. Open VS Code User Settings (JSON):
+   - Press `Cmd+Shift+P` (macOS) or `Ctrl+Shift+P` (Windows/Linux)
+   - Type "Preferences: Open User Settings (JSON)" and select it
+
+2. Add the following configuration to your settings.json file:
+
+```json
+{
+  "mcp.servers": {
+    "tavily-mcp": {
+      "inputs": [
+        {
+          "id": "tavily_api_key",
+          "description": "Tavily API Key",
+          "password": true
+        }
+      ],
+      "command": "npx",
+      "args": ["-y", "tavily-mcp@0.1.4"],
+      "env": {
+        "TAVILY_API_KEY": "${input:tavily_api_key}"
+      }
+    }
+  }
+}
+```
+
+3. Save the settings file
+
+4. Alternatively, you can use the VS Code CLI to add the MCP server:
+
+   **For VS Code Stable:**
+   ```
+   code --add-mcp '{"name":"tavily-mcp","command":"npx","args":["-y","tavily-mcp@0.1.4"],"env":{"TAVILY_API_KEY":"${input:tavily_api_key}"},"inputs":[{"id":"tavily_api_key","description":"Tavily API Key","password":true}]}'
+   ```
+
+   **For VS Code Insiders:**
+   ```
+   code-insiders --add-mcp '{"name":"tavily-mcp","command":"npx","args":["-y","tavily-mcp@0.1.4"],"env":{"TAVILY_API_KEY":"${input:tavily_api_key}"},"inputs":[{"id":"tavily_api_key","description":"Tavily API Key","password":true}]}'
+   ```
+
+5. After configuring, you'll be prompted to enter your Tavily API key when first using the MCP server
 
 ### Configuring Cline 🤖
 
